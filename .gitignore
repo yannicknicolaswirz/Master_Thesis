@@ -216,3 +216,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+API_download.xlsx
+CWData_clean.csv
+CWData_clean2.csv
+CWData_clean3.csv
+CWData_clean4.csv
+CWData_clean5.csv
+CWData_clean6.csv
+CWData_clean7.csv
+Export_all_CWData_Linnaea.R
+Watch_the_Data.xlsx
+Website_download.xlsx
