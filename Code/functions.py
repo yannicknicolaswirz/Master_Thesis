@@ -48,7 +48,7 @@ def gif_maker(*files, path, duration=1000):
 
 # function that does STL decomposition on monthly user counts
 
-def STL_decomposition (df, variable, figtitle):
+def STL_decomposition (df, variable, figtitle, ylabel):
     ts = df.set_index("year_month_dt")[variable].asfreq("MS")
     stl = STL(ts, period=12)
     result = stl.fit()
@@ -57,8 +57,8 @@ def STL_decomposition (df, variable, figtitle):
     fig, axes = plt.subplots(4, 1, figsize=(16, 10), sharex=True)
 
     components = [
-        (ts,             "Raw Numbers",  "Users"),
-        (result.trend,   "Trend",     "Users"),
+        (ts,             "Raw Numbers",  ylabel),
+        (result.trend,   "Trend",     ylabel),
         (result.seasonal,"Seasonal",  "Deviation"),
         (result.resid,   "Residual",  "Deviation"),
     ]
@@ -93,3 +93,5 @@ def STL_decomposition (df, variable, figtitle):
 
     print(f"Seasonal strength {figtitle}: {seasonal_strength:.3f}")
     print(f"Trend strength {figtitle}:    {trend_strength:.3f}")
+
+    return result
