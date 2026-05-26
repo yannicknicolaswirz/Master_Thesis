@@ -26,6 +26,7 @@ import ruptures as rpt
 from haversine import haversine
 import imageio
 from statsmodels.tsa.seasonal import STL
+import pycountry_convert as pc
 
 
 # function to get the ISO3 code of a country
@@ -95,3 +96,19 @@ def STL_decomposition (df, variable, figtitle, ylabel):
     print(f"Trend strength {figtitle}:    {trend_strength:.3f}")
 
     return result
+
+
+# function that retrieves the continent based on the country name
+
+def country_to_continent(country_name):
+    try:
+        country_alpha2 = pc.country_name_to_country_alpha2(country_name)
+        continent_code = pc.country_alpha2_to_continent_code(country_alpha2)
+        continent_map = {
+            "AF": "Africa", "AS": "Asia", "EU": "Europe",
+            "NA": "North America", "SA": "South America",
+            "OC": "Oceania", "AN": "Antarctica"
+        }
+        return continent_map.get(continent_code, "Unknown")
+    except:
+        return "Unknown"
