@@ -1,4 +1,4 @@
-latitude,longitude,Country,max_streak,streak_start,streak_end,n_users,user_ids,n_obs,Category
+latitude,longitude,Country,streak_months,streak_start,streak_end,n_users,user_ids,n_obs,Category
 47.789612,13.068625,Austria,74.0,2018-08,2024-09,3,"[2316, 7867, 2005]",911,virtual scale
 51.580956,-0.87388,United Kingdom,73.0,2020-04,2026-04,1,[27610],157,temporary stream
 51.608782,-0.881946,United Kingdom,73.0,2020-04,2026-04,1,[27610],156,temporary stream
