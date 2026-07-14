@@ -31,10 +31,16 @@ import pycountry_convert as pc
 
 # function to get the ISO3 code of a country
 
+ISO3_OVERRIDES = {
+    "Russia": "RUS",
+}
+
 def get_iso3(country_name):
+    if country_name in ISO3_OVERRIDES:
+        return ISO3_OVERRIDES[country_name]
     try:
         return pycountry.countries.lookup(country_name).alpha_3
-    except:
+    except LookupError:
         return None
     
 
