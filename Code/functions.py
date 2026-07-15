@@ -118,3 +118,11 @@ def country_to_continent(country_name):
         return continent_map.get(continent_code, "Unknown")
     except:
         return "Unknown"
+    
+
+# function that calculates Cramér's V
+
+def cramers_v(chi2, table):
+    n = table.sum().sum()
+    r, k = table.shape
+    return np.sqrt(chi2 / (n * (min(r, k) - 1)))
