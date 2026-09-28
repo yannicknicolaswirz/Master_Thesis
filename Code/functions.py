@@ -126,3 +126,18 @@ def cramers_v(chi2, table):
     n = table.sum().sum()
     r, k = table.shape
     return np.sqrt(chi2 / (n * (min(r, k) - 1)))
+
+
+# function that keeps fontsize in figures constant
+
+def setup_figure_style(base_fontsize=14):
+    plt.rcParams.update({
+        'font.size': base_fontsize,
+        'axes.labelsize': base_fontsize + 4,
+        'axes.titlesize': base_fontsize + 7,
+        'xtick.labelsize': base_fontsize,
+        'ytick.labelsize': base_fontsize,
+        'legend.fontsize': base_fontsize,
+        'legend.title_fontsize': base_fontsize + 4,
+        'figure.titlesize': base_fontsize + 7
+    })
