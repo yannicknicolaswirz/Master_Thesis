@@ -53,55 +53,19 @@ def gif_maker(*files, path, duration=1000):
     imageio.mimsave(f"{path}.gif", images, duration = duration)
 
 
-# function that does STL decomposition on monthly user counts
+# function that keeps fontsize in figures constant
 
-def STL_decomposition (df, variable, figtitle, ylabel):
-    ts = df.set_index("year_month_dt")[variable].asfreq("MS")
-    stl = STL(ts, period=12)
-    result = stl.fit()
-
-    # plot
-    fig, axes = plt.subplots(4, 1, figsize=(16, 10), sharex=True)
-
-    components = [
-        (ts,             "Raw Numbers",  ylabel),
-        (result.trend,   "Trend",     ylabel),
-        (result.seasonal,"Seasonal",  "Deviation"),
-        (result.resid,   "Residual",  "Deviation"),
-    ]
-
-    for ax, (data, title, yl) in zip(axes, components):
-        ax.plot(data, linewidth=1.2)
-        ax.set_title(title, fontsize=20, fontweight="bold", loc="left", pad=4)
-        ax.set_ylabel(yl, fontsize=17)
-        ax.grid(axis="x", alpha=0.3)
-        ax.grid(axis="y", alpha=0.3)
-        ax.set_axisbelow(True)
-        ax.spines[["top","right"]].set_visible(False)
-
-    # xticks: mark every January
-    years = pd.date_range(ts.index.min(), ts.index.max(), freq="YS")
-    axes[-1].set_xticks(years)
-    axes[-1].set_xticklabels([d.year for d in years], rotation=45, ha="right", fontsize=12)
-    axes[-1].set_xlabel("Year", fontsize=17)
-
-    # Residuals: zero-line
-    axes[-1].axhline(0, color="gray", linewidth=0.8, linestyle="--")
-    axes[2].axhline(0, color="gray", linewidth=0.8, linestyle="--")
-
-    fig.suptitle(f"STL Decomposition - {figtitle}", fontsize=20, fontweight="bold", y=1.01)
-
-    plt.tight_layout()
-    plt.savefig(f"../Products/STL_{variable}.png", dpi=300, bbox_inches="tight")
-    plt.close()
-
-    seasonal_strength = 1 - (np.var(result.resid) / np.var(result.seasonal + result.resid))
-    trend_strength    = 1 - (np.var(result.resid) / np.var(result.trend    + result.resid))
-
-    print(f"Seasonal strength {figtitle}: {seasonal_strength:.3f}")
-    print(f"Trend strength {figtitle}:    {trend_strength:.3f}")
-
-    return result
+def setup_figure_style(base_fontsize=14):
+    plt.rcParams.update({
+        'font.size': base_fontsize,
+        'axes.labelsize': base_fontsize + 4,
+        'axes.titlesize': base_fontsize + 7,
+        'xtick.labelsize': base_fontsize,
+        'ytick.labelsize': base_fontsize,
+        'legend.fontsize': base_fontsize,
+        'legend.title_fontsize': base_fontsize + 4,
+        'figure.titlesize': base_fontsize + 7
+    })
 
 
 # function that retrieves the continent based on the country name
@@ -126,18 +90,3 @@ def cramers_v(chi2, table):
     n = table.sum().sum()
     r, k = table.shape
     return np.sqrt(chi2 / (n * (min(r, k) - 1)))
-
-
-# function that keeps fontsize in figures constant
-
-def setup_figure_style(base_fontsize=14):
-    plt.rcParams.update({
-        'font.size': base_fontsize,
-        'axes.labelsize': base_fontsize + 4,
-        'axes.titlesize': base_fontsize + 7,
-        'xtick.labelsize': base_fontsize,
-        'ytick.labelsize': base_fontsize,
-        'legend.fontsize': base_fontsize,
-        'legend.title_fontsize': base_fontsize + 4,
-        'figure.titlesize': base_fontsize + 7
-    })
