@@ -218,7 +218,6 @@ __marimo__/
 .streamlit/secrets.toml
 
 API_download.xlsx
-CWData_clean7.csv
 Export_all_CWData_Linnaea.R
 Watch_the_Data.xlsx
 Website_download.xlsx
