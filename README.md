@@ -8,7 +8,7 @@ This MSc thesis, dedicated to the spatial analysis of CrowdWater data consists o
 
 
 
-Structure:
+**Structure:**
 
 Master\_Thesis/
 
@@ -138,19 +138,25 @@ Master\_Thesis/
 
 
 
-Setup
+**Setup:**
 
 pip install requests pandas matplotlib folium reverse-geocoder pycountry numpy geopandas fiona shapely scikit-learn ruptures haversine timezonefinder scipy cartopy libpysal esda statsmodels pymann-kendall pyproj pycountry-convert seaborn imageio geopy wbgapi openpyxl
 
 
 
-Data
+**Data:**
 
 The CrowdWater data is downloaded from Spotteron (using the Spotteron API) automatically by running the file "Master\_Thesis/Code/Download\_clean\_data.ipynb".
 
 
 
-Execution
+**Execution:**
 
 Run all cells (outputs are automatically saved to the correct subfolder in "Master\_Thesis/Products/")
+
+
+
+**Author, Contact Information:**
+
+Yannick Wirz, yannicknicolas.wirz@uzh.ch
 
