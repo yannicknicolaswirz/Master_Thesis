@@ -140,7 +140,7 @@ Master\_Thesis/
 
 **Setup:**
 
-pip install requests pandas matplotlib folium reverse-geocoder pycountry numpy geopandas fiona shapely scikit-learn ruptures haversine timezonefinder scipy cartopy libpysal esda statsmodels pymann-kendall pyproj pycountry-convert seaborn imageio geopy wbgapi openpyxl
+pip install requests pandas matplotlib folium reverse-geocoder pycountry numpy geopandas fiona shapely scikit-learn ruptures haversine timezonefinder scipy cartopy libpysal esda statsmodels pymann-kendall pyproj pycountry-convert seaborn imageio geopy wbgapi openpyxl shap
 
 
 
